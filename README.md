@@ -1,2 +1,2 @@
-# yumu-install
-yumu install the dependencies
+# yumu-server
+yumu server to listen the project
