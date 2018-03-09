@@ -58,12 +58,12 @@ function getSpace(total, str) {
 }
 
 function init() {
-  console.log('');
-  var getResult;
-  try {
-    getResult = child_process.execSync('npm run start', { encoding: 'utf8' });
-  } catch(err) {
-    console.log(err.stderr);
-  }
-  process.stdout.write(getResult);
+  var child = require('child_process').spawn(
+    process.platform === "win32" ? "npm.cmd" : "npm", ['start', '--color'],
+    {
+      'stdio': 'pipe',
+      'cwd': process.cwd()
+    }
+  );
+  child.stdout.pipe(process.stdout);
 }
